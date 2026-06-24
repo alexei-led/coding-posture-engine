@@ -1,6 +1,6 @@
 # Coding Posture Engine
 
-Task-aware operating modes for coding agents. It is a small Hermes plugin plus a standalone CLI prompt wrapper for Claude Code, Codex, and generic Pi-style agent commands.
+Task-aware operating modes for coding agents. It is a small Hermes plugin, a Pi package, and a standalone CLI prompt wrapper for Claude Code, Codex, and Pi-style agent commands.
 
 The point is not to make coding agents theatrical. The point is to stop them from behaving like optimistic elevators with write access.
 
@@ -17,6 +17,37 @@ Given a task prompt, the engine selects a **coding posture** such as:
 - `stuck-investigator` — stop thrashing after repeated failures.
 
 It can then render a compact prompt block for another coding agent.
+
+## Pi package install
+
+Pi packages are installed from git/npm/local paths. This repository now declares Pi resources in `package.json` under the `pi` key:
+
+- `extensions/coding-posture.ts` — Pi extension with `before_agent_start`, `/posture`, and tools.
+- `skills/coding-posture/SKILL.md` — Pi skill for posture selection discipline.
+- `prompts/posture.md` — `/posture` prompt template for explicit posture runs.
+
+Install from GitHub:
+
+```bash
+pi install git:github.com/alexei-led/coding-posture-engine@v0.1.0
+# or test without installing for the current run:
+pi -e git:github.com/alexei-led/coding-posture-engine@v0.1.0
+```
+
+Local development:
+
+```bash
+pi install /Users/alexei/projects/coding-posture-engine
+# or temporary:
+pi -e /Users/alexei/projects/coding-posture-engine
+```
+
+The Pi extension registers:
+
+- `before_agent_start` hook — injects a hidden posture message for coding-related prompts.
+- `/posture` command — select or render a posture in the TUI.
+- `coding_posture_select` tool — returns selected posture JSON.
+- `coding_posture_render` tool — returns a posture prompt block.
 
 ## Hermes plugin install
 
@@ -71,14 +102,14 @@ Run Codex with posture prompt:
 coding-posture --agent codex run review auth diff for security regressions
 ```
 
-Generic Pi-style adapter:
+Generic Pi CLI wrapper:
 
 ```bash
-# Uses PI_CLI=pi by default and passes the whole posture+task prompt as one arg.
+# Uses `pi -p` by default and passes the whole posture+task prompt as one argument.
 PI_CLI=pi coding-posture --agent pi run prototype a small API client
 ```
 
-There is no universal Pi coding CLI contract, because apparently the universe needed one more source of ambiguity. Use `PI_CLI` to point at the actual command.
+For native Pi package integration, prefer `pi install git:github.com/alexei-led/coding-posture-engine@v0.1.0`.
 
 ## Safety model
 

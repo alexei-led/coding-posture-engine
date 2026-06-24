@@ -1,0 +1,30 @@
+{
+  "name": "coding-posture-engine",
+  "version": "0.1.0",
+  "description": "Task-aware operating modes for Hermes, Pi, Claude Code, Codex, and other coding agents.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi-coding-agent",
+    "hermes-agent",
+    "claude-code",
+    "codex",
+    "coding-agents",
+    "agent-policy"
+  ],
+  "pi": {
+    "extensions": ["./extensions"],
+    "skills": ["./skills"],
+    "prompts": ["./prompts"]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "scripts": {
+    "test": "python3 -m pytest -q",
+    "smoke:python": "PYTHONPATH=. python3 -m coding_posture_engine.cli select fix failing pytest regression",
+    "smoke:pi-package": "node -e \"JSON.parse(require('fs').readFileSync('package.json','utf8')); JSON.parse(require('fs').readFileSync('coding_posture_engine/postures.json','utf8')); console.log('pi package json ok')\""
+  }
+}

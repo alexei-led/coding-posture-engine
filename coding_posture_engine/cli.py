@@ -19,11 +19,8 @@ def _build_agent_command(agent: str, prompt: str) -> List[str]:
         exe = os.environ.get("CODEX_CLI", "codex")
         return [exe, "exec", prompt]
     if agent == "pi":
-        # There is no universal Pi coding CLI. Treat PI_CLI as the contract and
-        # pass the whole prompt as one argument. Empty optimism was considered
-        # and, mercifully, rejected.
         exe = os.environ.get("PI_CLI", "pi")
-        return [exe, prompt]
+        return [exe, "-p", prompt]
     raise SystemExit(f"Unsupported agent: {agent}")
 
 

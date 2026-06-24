@@ -23,3 +23,12 @@ jobs:
         run: |
           PYTHONPATH=. python -m coding_posture_engine.cli select fix failing pytest regression
           PYTHONPATH=. python -m coding_posture_engine.cli --agent claude render --include-task fix failing pytest regression
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Pi package metadata
+        run: npm run smoke:pi-package
+      - name: Type-check Pi extension
+        run: |
+          npm install --ignore-scripts --no-save typescript @earendil-works/pi-coding-agent typebox
+          npx tsc --noEmit --skipLibCheck --target ES2022 --module NodeNext --moduleResolution NodeNext extensions/coding-posture.ts
