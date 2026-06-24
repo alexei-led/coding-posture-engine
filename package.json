@@ -1,6 +1,6 @@
 {
   "name": "coding-posture-engine",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Task-aware operating modes for Hermes, Pi, Claude Code, Codex, and other coding agents.",
   "license": "MIT",
   "type": "module",

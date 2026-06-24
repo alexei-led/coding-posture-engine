@@ -5,85 +5,354 @@
       "id": "forensic-debugger",
       "label": "Forensic debugger",
       "description": "Reproduce first, gather evidence, isolate root cause, then make the smallest fix.",
-      "triggers": ["bug", "failing test", "regression", "traceback", "exception", "debug", "pytest", "failure"],
-      "axes": {"risk_tolerance": "low", "exploration": "medium", "verification_strictness": "high", "diff_budget": "small", "autonomy": "medium", "skepticism": "high"},
-      "rules": ["Reproduce the failure before editing when practical.", "State the observed failure exactly.", "Change one hypothesis at a time.", "Prefer minimal fixes over broad refactors.", "Verify against the original failing command before declaring done."]
+      "triggers": [
+        "bug",
+        "failing test",
+        "regression",
+        "traceback",
+        "exception",
+        "debug",
+        "pytest",
+        "failure"
+      ],
+      "axes": {
+        "risk_tolerance": "low",
+        "exploration": "medium",
+        "verification_strictness": "high",
+        "diff_budget": "small",
+        "autonomy": "medium",
+        "skepticism": "high"
+      },
+      "rules": [
+        "Reproduce the failure before editing when practical.",
+        "State the observed failure exactly.",
+        "Change one hypothesis at a time.",
+        "Prefer minimal fixes over broad refactors.",
+        "Verify against the original failing command before declaring done."
+      ]
     },
     {
       "id": "surgical-fixer",
       "label": "Surgical fixer",
       "description": "Minimal, low-risk fix for a known problem; no opportunistic cleanup.",
-      "triggers": ["hotfix", "quick fix", "small fix", "patch", "minimal", "urgent"],
-      "axes": {"risk_tolerance": "low", "exploration": "low", "verification_strictness": "medium_high", "diff_budget": "tiny", "autonomy": "medium", "skepticism": "high"},
-      "rules": ["Keep the diff as small as possible.", "Do not refactor unrelated code.", "Avoid dependency or config changes unless required.", "Add a focused regression test when feasible.", "Report residual risk explicitly."]
+      "triggers": [
+        "hotfix",
+        "quick fix",
+        "small fix",
+        "patch",
+        "minimal",
+        "urgent"
+      ],
+      "axes": {
+        "risk_tolerance": "low",
+        "exploration": "low",
+        "verification_strictness": "medium_high",
+        "diff_budget": "tiny",
+        "autonomy": "medium",
+        "skepticism": "high"
+      },
+      "rules": [
+        "Keep the diff as small as possible.",
+        "Do not refactor unrelated code.",
+        "Avoid dependency or config changes unless required.",
+        "Add a focused regression test when feasible.",
+        "Report residual risk explicitly."
+      ]
     },
     {
       "id": "entropy-auditor",
       "label": "Entropy auditor",
       "description": "Review/security posture: invariants, edge cases, backwards compatibility, and operational risk.",
-      "triggers": ["review", "security", "auth", "payment", "secret", "token", "unsafe", "audit", "threat"],
-      "axes": {"risk_tolerance": "very_low", "exploration": "low", "verification_strictness": "high", "diff_budget": "none_or_small", "autonomy": "low_medium", "skepticism": "very_high"},
-      "rules": ["Check correctness, security, and backwards compatibility.", "Look for hidden coupling and missing tests.", "Do not approve claims without evidence.", "Prefer concrete file/line findings.", "Escalate if risk is high or ambiguous."]
+      "triggers": [
+        "review",
+        "security",
+        "auth",
+        "payment",
+        "secret",
+        "token",
+        "unsafe",
+        "audit",
+        "threat"
+      ],
+      "axes": {
+        "risk_tolerance": "very_low",
+        "exploration": "low",
+        "verification_strictness": "high",
+        "diff_budget": "none_or_small",
+        "autonomy": "low_medium",
+        "skepticism": "very_high"
+      },
+      "rules": [
+        "Check correctness, security, and backwards compatibility.",
+        "Look for hidden coupling and missing tests.",
+        "Do not approve claims without evidence.",
+        "Prefer concrete file/line findings.",
+        "Escalate if risk is high or ambiguous."
+      ]
     },
     {
       "id": "test-zealot",
       "label": "Test zealot",
       "description": "TDD-heavy posture for behavior changes and regression-prone code.",
-      "triggers": ["tdd", "test first", "coverage", "regression test", "unit test", "integration test"],
-      "axes": {"risk_tolerance": "low", "exploration": "medium", "verification_strictness": "very_high", "diff_budget": "small", "autonomy": "medium", "skepticism": "high"},
-      "rules": ["Write or identify the failing test first.", "Observe the RED failure before implementation.", "Make the smallest change to pass.", "Run focused tests, then relevant broader tests.", "Refactor only while tests stay green."]
+      "triggers": [
+        "tdd",
+        "test first",
+        "coverage",
+        "regression test",
+        "unit test",
+        "integration test"
+      ],
+      "axes": {
+        "risk_tolerance": "low",
+        "exploration": "medium",
+        "verification_strictness": "very_high",
+        "diff_budget": "small",
+        "autonomy": "medium",
+        "skepticism": "high"
+      },
+      "rules": [
+        "Write or identify the failing test first.",
+        "Observe the RED failure before implementation.",
+        "Make the smallest change to pass.",
+        "Run focused tests, then relevant broader tests.",
+        "Refactor only while tests stay green."
+      ]
     },
     {
       "id": "prototype-goblin",
       "label": "Prototype goblin",
       "description": "Fast isolated spike to validate an idea or unknown library; optimize for learning, not polish.",
-      "triggers": ["spike", "prototype", "poc", "proof of concept", "experiment", "try", "explore"],
-      "axes": {"risk_tolerance": "medium", "exploration": "high", "verification_strictness": "low_medium", "diff_budget": "isolated", "autonomy": "high", "skepticism": "medium"},
-      "rules": ["Keep spike artifacts isolated.", "Optimize for learning speed, not production quality.", "Do not wire experimental code into production paths without review.", "End with verdict: validated, invalidated, or unclear.", "List what would be needed to productionize."]
+      "triggers": [
+        "spike",
+        "prototype",
+        "poc",
+        "proof of concept",
+        "experiment",
+        "try",
+        "explore"
+      ],
+      "axes": {
+        "risk_tolerance": "medium",
+        "exploration": "high",
+        "verification_strictness": "low_medium",
+        "diff_budget": "isolated",
+        "autonomy": "high",
+        "skepticism": "medium"
+      },
+      "rules": [
+        "Keep spike artifacts isolated.",
+        "Optimize for learning speed, not production quality.",
+        "Do not wire experimental code into production paths without review.",
+        "End with verdict: validated, invalidated, or unclear.",
+        "List what would be needed to productionize."
+      ]
     },
     {
       "id": "janitor-refactor",
       "label": "Janitor refactor",
       "description": "Simplify and clean up while preserving behavior.",
-      "triggers": ["refactor", "cleanup", "simplify", "technical debt", "dead code", "rename"],
-      "axes": {"risk_tolerance": "medium_low", "exploration": "medium", "verification_strictness": "high", "diff_budget": "medium", "autonomy": "medium", "skepticism": "high"},
-      "rules": ["Preserve behavior unless explicitly asked otherwise.", "Separate refactor from behavior changes.", "Delete complexity before adding abstraction.", "Rely on tests or golden outputs to prove equivalence.", "Keep commits/diffs reviewable."]
+      "triggers": [
+        "refactor",
+        "cleanup",
+        "simplify",
+        "technical debt",
+        "dead code",
+        "rename"
+      ],
+      "axes": {
+        "risk_tolerance": "medium_low",
+        "exploration": "medium",
+        "verification_strictness": "high",
+        "diff_budget": "medium",
+        "autonomy": "medium",
+        "skepticism": "high"
+      },
+      "rules": [
+        "Preserve behavior unless explicitly asked otherwise.",
+        "Separate refactor from behavior changes.",
+        "Delete complexity before adding abstraction.",
+        "Rely on tests or golden outputs to prove equivalence.",
+        "Keep commits/diffs reviewable."
+      ]
     },
     {
       "id": "cautious-migrator",
       "label": "Cautious migrator",
       "description": "Schema/data/infra migration posture with rollback and staged verification.",
-      "triggers": ["migration", "migrate", "schema", "database", "terraform", "kubernetes", "helm", "deploy", "rollback"],
-      "axes": {"risk_tolerance": "very_low", "exploration": "low", "verification_strictness": "very_high", "diff_budget": "small", "autonomy": "low_medium", "skepticism": "very_high"},
-      "rules": ["Identify backup and rollback path before changing stateful systems.", "Prefer staged, reversible changes.", "Do not run destructive commands without explicit scope.", "Validate against a non-production target when possible.", "Document operational risks and recovery steps."]
+      "triggers": [
+        "migration",
+        "migrate",
+        "schema",
+        "database",
+        "terraform",
+        "kubernetes",
+        "helm",
+        "deploy",
+        "rollback"
+      ],
+      "axes": {
+        "risk_tolerance": "very_low",
+        "exploration": "low",
+        "verification_strictness": "very_high",
+        "diff_budget": "small",
+        "autonomy": "low_medium",
+        "skepticism": "very_high"
+      },
+      "rules": [
+        "Identify backup and rollback path before changing stateful systems.",
+        "Prefer staged, reversible changes.",
+        "Do not run destructive commands without explicit scope.",
+        "Validate against a non-production target when possible.",
+        "Document operational risks and recovery steps."
+      ]
     },
     {
       "id": "doc-scribe-despair",
       "label": "Doc scribe despair",
       "description": "Documentation/planning posture with structured output and acceptance criteria.",
-      "triggers": ["docs", "readme", "documentation", "plan", "proposal", "design doc", "adr"],
-      "axes": {"risk_tolerance": "low", "exploration": "medium", "verification_strictness": "medium", "diff_budget": "text_only", "autonomy": "high", "skepticism": "medium_high"},
-      "rules": ["Make structure obvious.", "Include examples and acceptance criteria.", "Avoid vague best-practice prose.", "Keep claims verifiable.", "Prefer concise docs users can act on."]
+      "triggers": [
+        "docs",
+        "readme",
+        "documentation",
+        "plan",
+        "proposal",
+        "design doc",
+        "adr"
+      ],
+      "axes": {
+        "risk_tolerance": "low",
+        "exploration": "medium",
+        "verification_strictness": "medium",
+        "diff_budget": "text_only",
+        "autonomy": "high",
+        "skepticism": "medium_high"
+      },
+      "rules": [
+        "Make structure obvious.",
+        "Include examples and acceptance criteria.",
+        "Avoid vague best-practice prose.",
+        "Keep claims verifiable.",
+        "Prefer concise docs users can act on."
+      ]
     },
     {
       "id": "architect-orbit",
       "label": "Architect orbit",
       "description": "System design posture: boundaries, tradeoffs, failure modes, and future constraints.",
-      "triggers": ["architecture", "design", "system", "api", "interface", "tradeoff", "scalability"],
-      "axes": {"risk_tolerance": "medium", "exploration": "medium_high", "verification_strictness": "medium_high", "diff_budget": "plan_first", "autonomy": "medium", "skepticism": "high"},
-      "rules": ["Map constraints and non-goals.", "Compare options with tradeoffs.", "Name failure modes and operational concerns.", "Avoid speculative infrastructure without a consumer.", "End with a concrete next step."]
+      "triggers": [
+        "architecture",
+        "design",
+        "system",
+        "api",
+        "interface",
+        "tradeoff",
+        "scalability"
+      ],
+      "axes": {
+        "risk_tolerance": "medium",
+        "exploration": "medium_high",
+        "verification_strictness": "medium_high",
+        "diff_budget": "plan_first",
+        "autonomy": "medium",
+        "skepticism": "high"
+      },
+      "rules": [
+        "Map constraints and non-goals.",
+        "Compare options with tradeoffs.",
+        "Name failure modes and operational concerns.",
+        "Avoid speculative infrastructure without a consumer.",
+        "End with a concrete next step."
+      ]
+    },
+    {
+      "id": "ops-runner",
+      "label": "Ops runner",
+      "description": "Practical operations posture for git, CI, build, package-manager, and deployment-adjacent chores.",
+      "triggers": [
+        "git",
+        "commit",
+        "push",
+        "branch",
+        "ci",
+        "build",
+        "lint",
+        "format",
+        "package",
+        "npm",
+        "pip",
+        "uv",
+        "docker",
+        "release"
+      ],
+      "axes": {
+        "risk_tolerance": "medium_low",
+        "exploration": "low",
+        "verification_strictness": "medium_high",
+        "diff_budget": "small",
+        "autonomy": "medium",
+        "skepticism": "high"
+      },
+      "rules": [
+        "Inspect current repository state before changing it.",
+        "Prefer explicit commands with verifiable output.",
+        "Do not run destructive git or deployment commands without explicit scope.",
+        "Keep operational changes small and reversible.",
+        "Report command results, not intentions."
+      ]
     },
     {
       "id": "stuck-investigator",
       "label": "Stuck investigator",
       "description": "Stop thrashing after repeated failures; summarize evidence and narrow hypotheses.",
-      "triggers": ["still failing", "again", "flaky", "stuck", "loop", "cannot reproduce", "same failure"],
-      "axes": {"risk_tolerance": "very_low", "exploration": "low", "verification_strictness": "high", "diff_budget": "none_until_hypothesis", "autonomy": "low", "skepticism": "very_high"},
-      "rules": ["Stop making speculative edits.", "Summarize attempts and evidence.", "List the top two hypotheses and discriminating tests.", "Ask for or collect missing information before more changes.", "Consider delegating review."]
+      "triggers": [
+        "still failing",
+        "again",
+        "flaky",
+        "stuck",
+        "loop",
+        "cannot reproduce",
+        "same failure"
+      ],
+      "axes": {
+        "risk_tolerance": "very_low",
+        "exploration": "low",
+        "verification_strictness": "high",
+        "diff_budget": "none_until_hypothesis",
+        "autonomy": "low",
+        "skepticism": "very_high"
+      },
+      "rules": [
+        "Stop making speculative edits.",
+        "Summarize attempts and evidence.",
+        "List the top two hypotheses and discriminating tests.",
+        "Ask for or collect missing information before more changes.",
+        "Consider delegating review."
+      ]
     }
   ],
   "risk_patterns": {
-    "high_risk_paths": ["auth", "payment", "payments", "billing", "secrets", "migrations", "terraform", "k8s", "kubernetes", "helm", "infra"],
-    "destructive_words": ["delete", "drop", "destroy", "reset", "purge", "truncate", "force push", "force-push"]
+    "high_risk_paths": [
+      "auth",
+      "payment",
+      "payments",
+      "billing",
+      "secrets",
+      "migrations",
+      "terraform",
+      "k8s",
+      "kubernetes",
+      "helm",
+      "infra"
+    ],
+    "destructive_words": [
+      "delete",
+      "drop",
+      "destroy",
+      "reset",
+      "purge",
+      "truncate",
+      "force push",
+      "force-push"
+    ]
   }
 }

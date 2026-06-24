@@ -13,6 +13,7 @@ Given a task prompt, the engine selects a **coding posture** such as:
 - `entropy-auditor` — review/security posture for invariants and edge cases.
 - `test-zealot` — TDD-heavy posture for behavior changes.
 - `prototype-goblin` — isolated spike mode.
+- `ops-runner` — git, CI, build, release, and package-manager chores.
 - `cautious-migrator` — migrations/infra with rollback thinking.
 - `stuck-investigator` — stop thrashing after repeated failures.
 
@@ -22,16 +23,16 @@ It can then render a compact prompt block for another coding agent.
 
 Pi packages are installed from git/npm/local paths. This repository now declares Pi resources in `package.json` under the `pi` key:
 
-- `extensions/coding-posture.ts` — Pi extension with `before_agent_start`, `/posture`, and tools.
+- `extensions/coding-posture.ts` — Pi extension with ephemeral `context` injection, `/posture`, and tools.
 - `skills/coding-posture/SKILL.md` — Pi skill for posture selection discipline.
-- `prompts/posture.md` — `/posture` prompt template for explicit posture runs.
+- `prompts/posture-task.md` — `/posture-task` prompt template for explicit posture runs without conflicting with the extension command.
 
 Install from GitHub:
 
 ```bash
-pi install git:github.com/alexei-led/coding-posture-engine@v0.1.0
+pi install git:github.com/alexei-led/coding-posture-engine@v0.1.1
 # or test without installing for the current run:
-pi -e git:github.com/alexei-led/coding-posture-engine@v0.1.0
+pi -e git:github.com/alexei-led/coding-posture-engine@v0.1.1
 ```
 
 Local development:
@@ -44,7 +45,7 @@ pi -e /Users/alexei/projects/coding-posture-engine
 
 The Pi extension registers:
 
-- `before_agent_start` hook — injects a hidden posture message for coding-related prompts.
+- `context` hook — injects an ephemeral hidden posture message for coding-related prompts without storing it in the session.
 - `/posture` command — select or render a posture in the TUI.
 - `coding_posture_select` tool — returns selected posture JSON.
 - `coding_posture_render` tool — returns a posture prompt block.
@@ -109,7 +110,7 @@ Generic Pi CLI wrapper:
 PI_CLI=pi coding-posture --agent pi run prototype a small API client
 ```
 
-For native Pi package integration, prefer `pi install git:github.com/alexei-led/coding-posture-engine@v0.1.0`.
+For native Pi package integration, prefer `pi install git:github.com/alexei-led/coding-posture-engine@v0.1.1`.
 
 ## Safety model
 

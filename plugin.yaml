@@ -1,5 +1,5 @@
 name: coding-posture-engine
-version: 0.1.0
+version: 0.1.1
 description: "Coding-agent posture control layer for Hermes, Claude Code, Codex, and generic Pi-style CLI agents. Selects task-aware execution modes such as forensic-debugger, surgical-fixer, entropy-auditor, and prototype-goblin."
 author: "Alexei Ledenev + Marvin / Hermes Agent"
 kind: standalone
