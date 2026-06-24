@@ -53,13 +53,13 @@ Coding agents already enforce baseline discipline in their system prompts (repro
 
 Two load disciplines, and the split matters:
 
-- **Always-on** (`CLAUDE.md` / `AGENTS.md`, system prompt): universal invariants you want on every turn. The "Always" block here — verify by running, never fake green, no destructive commands without scope — is most reliable when you also paste it into your always-on instructions, because a conditionally-loaded skill can fail to activate.
+- **Always-on** (`CLAUDE.md` / `AGENTS.md`, system prompt): universal invariants you want on every turn. The "Always" block here — verify by running, never fake green, no destructive commands without scope — is most reliable when you also paste it into your always-on instructions, because a conditionally-loaded skill can fail to activate. [`always-on-snippet.md`](always-on-snippet.md) is that block, ready to paste.
 - **Conditional** (this skill): the per-task mode checklists, loaded only when relevant. That is the reason this is a skill and not eleven checklists bloating every turn.
 
 [Anthropic's skill guidance](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) is evaluation-driven: keep only what measurably closes a gap. See Status.
 
 ## Status
 
-This is an MVP. It is deliberately small: no code, no model calls, no network, no secrets. The bet is that procedural checklists aimed at known model failure modes are useful defaults. **That bet is not yet measured** — there is no eval here comparing agent behavior with and without the skill. Treat the modes as disciplined defaults, not a guarantee.
+This is an MVP. The bet is that procedural checklists aimed at known model failure modes are useful defaults. **That bet is still unproven on numbers** — but it is now testable: [`eval/`](eval/) provides a with/without-skill behavioral eval that reuses the `agent-skills-eval` runner. Run it (paid) to measure lift; until then, treat the modes as disciplined defaults, not a guarantee.
 
-Future work: an eval harness that measures behavior change on fixed tasks; refine the mode set from what actually moves outcomes.
+Future work: run the eval and refine the mode set from what actually moves outcomes.
