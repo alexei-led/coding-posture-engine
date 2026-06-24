@@ -30,9 +30,9 @@ Pi packages are installed from git/npm/local paths. This repository now declares
 Install from GitHub:
 
 ```bash
-pi install git:github.com/alexei-led/coding-posture-engine@v0.1.1
+pi install git:github.com/alexei-led/coding-posture-engine@v0.1.2
 # or test without installing for the current run:
-pi -e git:github.com/alexei-led/coding-posture-engine@v0.1.1
+pi -e git:github.com/alexei-led/coding-posture-engine@v0.1.2
 ```
 
 Local development:
@@ -110,7 +110,7 @@ Generic Pi CLI wrapper:
 PI_CLI=pi coding-posture --agent pi run prototype a small API client
 ```
 
-For native Pi package integration, prefer `pi install git:github.com/alexei-led/coding-posture-engine@v0.1.1`.
+For native Pi package integration, prefer `pi install git:github.com/alexei-led/coding-posture-engine@v0.1.2`.
 
 ## Safety model
 
