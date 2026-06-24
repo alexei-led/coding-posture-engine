@@ -12,6 +12,14 @@ repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 skill_src="$repo_root/skills/coding-posture"
 evals_src="$repo_root/tests/skill-evals/coding-posture/evals"
 
+# Load a local .env (gitignored) if present, so the run is self-contained.
+if [ -f "$repo_root/.env" ]; then
+	set -a
+	# shellcheck disable=SC1091
+	. "$repo_root/.env"
+	set +a
+fi
+
 plugin="coding-posture"
 skill="coding-posture"
 root="${SKILL_EVAL_ROOT:-/tmp/coding-posture-skill-eval-root}"
