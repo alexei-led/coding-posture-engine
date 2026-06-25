@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Skip deletion-only pushes.
+while read -r local_ref local_sha _remote_ref _remote_sha; do
+  [ "$local_sha" = "0000000000000000000000000000000000000000" ] && exit 0
+  break
+done
+
+# Scan full repo history for secrets before pushing.
+if ! command -v gitleaks &>/dev/null; then
+  echo "pre-push: gitleaks not found — install it: brew install gitleaks" >&2
+  exit 1
+fi
+
+gitleaks git --redact --no-banner
