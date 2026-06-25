@@ -1,0 +1,19 @@
+{
+  "name": "coding-posture",
+  "interface": {
+    "displayName": "coding-posture"
+  },
+  "plugins": [
+    {
+      "name": "coding-posture",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      }
+    }
+  ]
+}

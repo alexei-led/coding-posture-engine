@@ -1,0 +1,23 @@
+{
+  "name": "coding-posture",
+  "owner": {
+    "name": "Alexei Ledenev",
+    "email": "alexei.led@gmail.com"
+  },
+  "metadata": {
+    "description": "Task-aware working modes for coding agents",
+    "homepage": "https://github.com/alexei-led/coding-posture",
+    "repository": "https://github.com/alexei-led/coding-posture",
+    "license": "MIT",
+    "version": "0.5.0"
+  },
+  "plugins": [
+    {
+      "name": "coding-posture",
+      "source": ".",
+      "description": "Task-aware working modes for coding agents — debug, fix, review, migrate, and more",
+      "version": "0.5.0"
+    }
+  ],
+  "version": "0.5.0"
+}

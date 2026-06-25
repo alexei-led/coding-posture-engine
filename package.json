@@ -1,6 +1,6 @@
 {
   "name": "coding-posture",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "A coding-posture skill: pick a task-appropriate working mode and follow its checklist. Works in any SKILL.md-compatible agent (Hermes, Claude Code, Codex, Cursor, Pi).",
   "license": "MIT",
   "keywords": [

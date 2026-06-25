@@ -45,13 +45,39 @@ flowchart TD
 
 ## Install
 
-A standard `SKILL.md` skill — works unmodified across compatible agents.
+Install as a **plugin** (one command, updates in place) or drop the skill in directly. It's a standard `SKILL.md` skill, so it works unmodified across compatible agents.
 
-| Agent                            | Install                                                                                                                                                                                                 |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Hermes**                       | Drop `skills/coding-posture/` into `~/.hermes/skills/` (auto-discovered on startup). URL/hub install: see the [Hermes skills docs](https://hermes-agent.nousresearch.com/docs/guides/work-with-skills). |
-| **Claude Code / Codex / Cursor** | Copy `skills/coding-posture/` into the agent's skills dir (e.g. `~/.claude/skills/coding-posture/`).                                                                                                    |
-| **Pi**                           | `pi install git:github.com/alexei-led/coding-posture`                                                                                                                                                   |
+### Claude Code — plugin
+
+```text
+/plugin marketplace add alexei-led/coding-posture
+/plugin install coding-posture@coding-posture
+```
+
+Update later with `/plugin marketplace update coding-posture` then `/reload-plugins`, or enable auto-update from the `/plugin` menu to refresh on startup.
+
+### Codex CLI — plugin
+
+```bash
+git clone git@github.com:alexei-led/coding-posture.git
+codex   # then: /plugins → add the local marketplace in ./coding-posture → install coding-posture
+```
+
+Or point Codex straight at the skill in `~/.codex/config.json`:
+
+```json
+{ "skills": ["/abs/path/to/coding-posture/skills/coding-posture"] }
+```
+
+Update later with `git pull`.
+
+### Other agents
+
+| Agent                             | Install                                                                                                                                                                                      |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Hermes**                        | Drop `skills/coding-posture/` into `~/.hermes/skills/` (auto-discovered). URL/hub install: see the [Hermes skills docs](https://hermes-agent.nousresearch.com/docs/guides/work-with-skills). |
+| **Pi**                            | `pi install git:github.com/alexei-led/coding-posture`                                                                                                                                        |
+| **Cursor / any `SKILL.md` agent** | Copy `skills/coding-posture/` into the agent's skills dir.                                                                                                                                   |
 
 The agent activates the skill from its `description` when a coding task starts.
 

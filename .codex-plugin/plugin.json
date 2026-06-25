@@ -1,0 +1,13 @@
+{
+  "name": "coding-posture",
+  "version": "0.5.0",
+  "description": "Task-aware working modes for coding agents — debug, fix, review, test-first, refactor, optimize, migrate, upgrade, integrate, spike, unstuck",
+  "author": {
+    "name": "Alexei Ledenev",
+    "email": "alexei.led@gmail.com"
+  },
+  "homepage": "https://github.com/alexei-led/coding-posture",
+  "repository": "https://github.com/alexei-led/coding-posture",
+  "license": "MIT",
+  "skills": "./skills"
+}
