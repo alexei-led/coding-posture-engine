@@ -31,7 +31,7 @@ It is a standard [`SKILL.md`](https://hermes-agent.nousresearch.com/docs/user-gu
 **Pi:**
 
 ```bash
-pi install git:github.com/alexei-led/coding-posture-engine
+pi install git:github.com/alexei-led/coding-posture
 ```
 
 The agent activates the skill from its `description` when a coding task starts.
